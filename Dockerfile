@@ -28,7 +28,7 @@ RUN apt-get -y update && apt-get install -y \
     zip \
     lsof wget vim sudo rsync cron mysql-client openssh-server supervisor locate mplayer valgrind certbot python-certbot-apache dnsutils tcpdump gstreamer1.0-tools
 
-
+RUN add-apt-repository ppa:jonathonf/ffmpeg-4
 RUN apt-get install -y ffmpeg
 
 RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && cd /janus-gateway && \
