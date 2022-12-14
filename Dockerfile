@@ -50,4 +50,22 @@ RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && cd /janus
     git checkout refs/tags/v1.1.0 && \
     sh autogen.sh && \
     ./configure && \
+    --enable-post-processing \
+    --enable-boringssl \
+    --disable-data-channels \
+    --disable-rabbitmq \
+    --disable-mqtt \
+    --disable-unix-sockets \
+    --disable-dtls-settimeout \
+    --disable-plugin-echotest \
+    --enable-plugin-recordplay \
+    --disable-plugin-sip \
+    --disable-plugin-videocall \
+    --disable-plugin-voicemail \
+    --disable-plugin-textroom \
+    --disable-rest \
+    --disable-turn-rest-api \
+    --disable-plugin-audiobridge \
+    --disable-plugin-nosip \
+    --enable-all-handlers && \
     make && make install && make configs
