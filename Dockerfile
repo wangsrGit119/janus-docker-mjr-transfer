@@ -28,8 +28,17 @@ RUN apt-get -y update && apt-get install -y \
     zip \
     lsof wget vim sudo rsync cron mysql-client openssh-server supervisor locate mplayer valgrind certbot python-certbot-apache dnsutils tcpdump gstreamer1.0-tools
 
-RUN add-apt-repository ppa:jonathonf/ffmpeg-4
-RUN apt-get install -y ffmpeg
+# Install ffmpeg
+RUN echo deb http://www.deb-multimedia.org stretch main non-free \
+    >>/etc/apt/sources.list && \
+    wget http://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb && \
+    dpkg -i deb-multimedia-keyring_2016.8.1_all.deb && \
+    apt-get update && \
+    apt-get -y install deb-multimedia-keyring && \
+    apt-get update && \
+    apt-get -y dist-upgrade && \
+    apt-get -y install ffmpeg
+RUN ffmpeg -v
 
 RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && cd /janus-gateway && \
     git checkout refs/tags/v1.1.0 && \
