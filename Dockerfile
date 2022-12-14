@@ -42,4 +42,6 @@ RUN ffmpeg -version
 
 RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && cd /janus-gateway && \
     git checkout refs/tags/v1.1.0 && \
-    sh autogen.sh
+    sh autogen.sh && \
+    ./configure \
+    make && make install && make configs
