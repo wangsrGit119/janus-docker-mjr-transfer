@@ -28,6 +28,12 @@ RUN apt-get -y update && apt-get install -y \
     zip \
     lsof wget vim sudo rsync cron mysql-client openssh-server supervisor locate mplayer valgrind certbot python-certbot-apache dnsutils tcpdump gstreamer1.0-tools
 
+RUN SRTP="2.2.0" && apt-get remove -y libsrtp0-dev && wget https://github.com/cisco/libsrtp/archive/v$SRTP.tar.gz && \
+    tar xfv v$SRTP.tar.gz && \
+    cd libsrtp-$SRTP && \
+    ./configure --prefix=/usr --enable-openssl && \
+    make shared_library && sudo make install
+
 # Install ffmpeg
 RUN echo deb http://www.deb-multimedia.org stretch main non-free \
     >>/etc/apt/sources.list && \
