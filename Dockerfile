@@ -2,7 +2,6 @@ FROM buildpack-deps:stretch
 
 RUN sed -i 's/archive.ubuntu.com/mirror.aarnet.edu.au\/pub\/ubuntu\/archive/g' /etc/apt/sources.list
 COPY t.sh /usr/local/bin/t.sh
-RUN CHMOD +x /usr/local/bin/t.sh
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get -y update && apt-get install -y \
     libjansson-dev \
