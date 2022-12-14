@@ -38,7 +38,7 @@ RUN echo deb http://www.deb-multimedia.org stretch main non-free \
     apt-get update && \
     apt-get -y dist-upgrade && \
     apt-get -y install ffmpeg
-RUN ffmpeg -v
+RUN ffmpeg -version
 
 RUN cd / && git clone https://github.com/meetecho/janus-gateway.git && cd /janus-gateway && \
     git checkout refs/tags/v1.1.0 && \
